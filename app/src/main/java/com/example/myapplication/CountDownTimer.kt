@@ -13,7 +13,6 @@ class CountDownTimerImpl(millisInFuture: Long, countDownInterval: Long, var text
 
     override fun onTick(millisUntilFinished: Long) {
         timerState = 1000000 - millisUntilFinished
-        println(timerState)
         textView.text = converter.convert(((timerState) / 1000).toInt())
     }
 
