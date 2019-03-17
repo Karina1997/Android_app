@@ -11,7 +11,7 @@ import com.example.myapplication.numberConverter.Converter
 class CounterActivity : AppCompatActivity() {
 
     var timerState: Long = 0
-    lateinit var timer: CountDownTimerImpl
+    var timer: CountDownTimerImpl? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +30,10 @@ class CounterActivity : AppCompatActivity() {
         button.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 timer = CountDownTimerImpl(1000000 - timerState, 1000, textView, button)
-                timer.start()
+                timer?.start()
             } else {
-                timer.cancel()
-                timerState = timer.timerState
+                timer?.cancel()
+                timerState = timer?.timerState ?: 0L
             }
         }
 
@@ -42,7 +42,7 @@ class CounterActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
         if (outState != null) {
-            outState.putLong("timerState", timer.timerState)
+            outState.putLong("timerState", timer?.timerState ?: 0L)
         }
     }
 
