@@ -48,6 +48,6 @@ class CounterActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        timer.cancel()
+        timer?.cancel()
     }
 }
